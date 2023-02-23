@@ -25,13 +25,13 @@ def proxy(host, path):
     return (response.content, response.status_code, headers)
 
 
-@app.route("/")
-def getRoot():
-    return "Welcome!"
+# @app.route("/")
+# def getRoot():
+#     return "Welcome!"
 
 
-@app.route("/app/", defaults={"path": "index.html"})
-@app.route("/app/<path:path>")
+@app.route("/", defaults={"path": "index.html"})
+@app.route("/<path:path>")
 def getApp(path):
     if IS_DEV:
         return proxy(WEBPACK_DEV_SERVER_HOST, request.path)
